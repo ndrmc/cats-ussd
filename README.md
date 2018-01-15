@@ -1,4 +1,4 @@
-SMART FACE - SMS Managed Accountability & Reporting Technology for Food Aid Commodities in Ethiopia
+SMARTFACE - SMS Managed Accountability & Reporting Technology for Food Aid Commodities in Ethiopia
 =========
 
 # The problem
