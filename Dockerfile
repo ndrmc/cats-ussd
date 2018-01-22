@@ -1,26 +1,26 @@
-FROM alpine:3.4
+# take default image of node boron i.e  node 6.x
+FROM node:6.10.1
 
-# File Author / Maintainer
-LABEL authors="Zouhir Chahoud <zouhir@zouhir.org>"
+MAINTAINER Kunal Kapadia <kunalkapadia12@gmail.com>
 
-# Update & install required packages
-RUN apk add --update nodejs bash git
+# create app directory in container
+RUN mkdir -p /app
 
-# Install app dependencies
-COPY package.json /www/package.json
-RUN cd /www; npm install
+# set /app directory as default working directory
+WORKDIR /app
 
-# Copy app source
-COPY . /www
+# only copy package.json initially so that `RUN yarn` layer is recreated only
+# if there are changes in package.json
+ADD package.json yarn.lock /app/
 
-# Set work directory to /www
-WORKDIR /www
+# --pure-lockfile: Don’t generate a yarn.lock lockfile
+RUN yarn --pure-lockfile
 
-# set your port
-ENV PORT 8080
+# copy all file from current dir to /app in container
+COPY . /app/
 
-# expose the port to outside world
-EXPOSE  8080
+# expose port 4040
+EXPOSE 4040
 
-# start command as per package.json
-CMD ["npm", "start"]
+# cmd to start service
+CMD [ "yarn", "start" ]
