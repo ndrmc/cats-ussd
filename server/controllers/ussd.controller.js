@@ -1,4 +1,4 @@
-import menu from './ussd-menu'
+import menu from '../services/flow/ussd-menu'
 import axios from 'axios'
 import moment from 'moment'
 

@@ -22,5 +22,5 @@ COPY . /app/
 # expose port 4040
 EXPOSE 4040
 
-# cmd to start service
+# cmd to start services
 CMD [ "yarn", "start" ]

@@ -26,9 +26,9 @@ services:
       - MONGO_HOST=mongodb://mongo/express-mongoose-es6-rest-api-test
       - DEBUG=express-mongoose-es6-rest-api:*
 
-    # Link to containers in another service.
+    # Link to containers in another services.
     # Links also express dependency between services in the same way as depends_on,
-    # so they determine the order of service startup.
+    # so they determine the order of services startup.
     links:
       - mongo
 
