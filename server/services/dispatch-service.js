@@ -1,8 +1,13 @@
 import axios from 'axios';
 import moment from 'moment/moment';
+import config from '../../config/config'
+
+let ax = axios.create({
+  baseURL: `${config.baseUrl}:${config.port}/api/ussd/`
+})
 
 // TODO demonstrates how to call an external API
-const getDispatchInfoViaProxy = (gin) => axios.get(`http://localhost:4040/api/ussd/dispatch?gin=${gin}`).then(axiosResponse => axiosResponse.data);
+const getDispatchInfoViaProxy = (gin) => ax.get(`dispatch?gin=${gin}`).then(axiosResponse => axiosResponse.data);
 
 const getDispatchInfo = (gin) => {
   let itemType = ['Wheat', 'Duket', 'Furno', 'Fafa', 'Endomi', 'Wetet'][gin];
@@ -16,6 +21,6 @@ const getDispatchInfo = (gin) => {
   };
 };
 
-const receive = (val) => axios.post('http://localhost:4040/api/ussd/received/', {val}).then(response => response.data)
+const receive = (val) => ax.post('received', {val}).then(response => response.data)
 
 export default { getDispatchInfoViaProxy, getDispatchInfo };
