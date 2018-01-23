@@ -1,35 +1,27 @@
-import menu from '../services/flow/ussd-menu'
-import axios from 'axios'
-import moment from 'moment'
+import menu from '../services/flow/ussd-menu';
+import dispatchService from '../services/dispatch-service';
 
 function start(req, res, next) {
-  menu.run(req.body, ussdResult => {
-    res.send(ussdResult)
-  })
+  menu.run(req.body, (ussdResult) => {
+    res.send(ussdResult);
+  });
 }
 
-function getDispatchProxy(req, res, next) {
-  let gin = parseInt(req.query.gin)
-  let itemType = ['Wheat', 'Duket', 'Furno', 'Fafa', 'Endomi', 'Wetet'][gin]
-  itemType = itemType ? itemType : 'Wheat'
-  res.json({
-    bags: gin + 1,
-    kg: gin * 100,
-    itemType,
-    date: moment().subtract(gin, 'days').calendar(),
-    truckPlateNumber: gin + '-38765',
-  })
+function getDispatchInfo(req, res, next) {
+  const gin = parseInt(req.query.gin, 10);
+  const info = dispatchService.getDispatchInfo(gin);
+  res.json(info);
 }
 
-function getDispatch(req, res, next) {
-  axios.get('http://localhost:4040/api/ussd/dispatch-proxy?gin=' + req.query.gin).then((axiosResponse) => {
-    res.json(axiosResponse.data)
-  })
+function getDispatchViaProxy(req, res, next) {
+  dispatchService.getDispatchInfoViaProxy(req.query.gin).then((dispatch) => {
+    res.json(dispatch);
+  });
 }
 
 function received(req, res, next) {
-  //TODO: store the received amount to the database
-  res.send({})
+  // TODO: store the received amount to the database
+  res.send({});
 }
 
-export default {start, getDispatch, getDispatchProxy, received}
+export default { start, getDispatchInfo, getDispatchViaProxy, received };

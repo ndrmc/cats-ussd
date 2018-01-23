@@ -1,10 +1,8 @@
-import UssdMenu from 'ussd-menu-builder'
-const menu = new UssdMenu()
-import axios from 'axios'
-import * as registerDeliveryStates from './states/delivery'
-import * as registerDistributionStates from './states/distribution'
+import UssdMenu from 'ussd-menu-builder';
+import * as registerDeliveryStates from './states/delivery';
+import * as registerDistributionStates from './states/distribution';
 
-let sessions = {}
+const menu = new UssdMenu()
 
 menu.startState({
   run: () => {
@@ -21,35 +19,7 @@ menu.startState({
   }
 })
 
-menu.sessionConfig({
-  start: (sessionId, callback) => {
-    // initialize current session if it doesn't exist
-    // this is called by menu.run()
-    if(!(sessionId in sessions)) sessions[sessionId] = {};
-    callback();
-  },
-
-  end: (sessionId, callback) => {
-    // clear current session
-    // this is called by menu.end()
-    delete sessions[sessionId];
-    callback();
-  },
-
-  set: (sessionId, key, value, callback) => {
-    // store key-value pair in current session
-    sessions[sessionId][key] = value;
-    callback();
-  },
-
-  get: (sessionId, key, callback) => {
-    // retrieve value by key in current session
-    let value = sessions[sessionId][key];
-    callback(null, value);
-  }
-})
-
 registerDeliveryStates.register(menu)
 registerDistributionStates.register(menu)
 
-export default menu
+export default menu;

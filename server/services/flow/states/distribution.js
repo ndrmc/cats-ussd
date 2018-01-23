@@ -1,11 +1,8 @@
 export const register = (menu) => {
   menu.state('distribution', {
     run: () => {
-      menu.con('You are reporting to {fdp} FDP which is in {zone} Zone, {woreda} Woreda. Which round are you reporting for?', {
-        fdp: 'Ade',
-        zone: 'East Hararghie',
-        woreda: 'Gola Oda',
-      })
+      let fdp = 'Ade', zone = 'East Hararghie', woreda = 'Gola Oda';
+      menu.con(`You are reporting to ${fdp} FDP which is in ${zone} Zone, ${woreda} Woreda. Which round are you reporting for?`)
     },
 
     defaultNext: 'getReportRound',
@@ -14,9 +11,23 @@ export const register = (menu) => {
     .state('getReportRound', {
       run: () => {
         let val = menu.val
-        menubar.con('Please type the total number of beneficiaries which were provided assistance in 2009/2017 2nd round?')
+        menu.con('Please type the total number of beneficiaries which were provided assistance in 2009/2017 2nd round?')
       },
 
       defaultNext: 'deliveryInformationSubmitted'
+    })
+
+    .state('deliveryInformationSubmitted', {
+      run: () => {
+        menu.con('Total amount of [commodity] in quintal distributed?')
+      },
+
+      defaultNext: 'totalAmountOfCommoditySubmitted'
+    })
+
+    .state('totalAmountOfCommoditySubmitted', {
+      run: () => {
+        menu.end('Thank you for submitting distribution information. You will recieve a confirmation SMS containing your distribution record.')
+      }
     })
 }
