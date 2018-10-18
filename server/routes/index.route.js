@@ -2,7 +2,9 @@ import express from 'express';
 import userRoutes from './user.route';
 import authRoutes from './auth.route';
 import ussdRoutes from './ussd.route';
-import operationRoutes from './operation.route'
+import {operationRoutes} from './operation.route'
+import {postingRoutes} from './posting.route'
+import {bidRoutes} from './bid.route'
 
 const router = express.Router(); // eslint-disable-line new-cap
 
@@ -21,5 +23,9 @@ router.use('/auth', authRoutes);
 router.use('/ussd', ussdRoutes)
 
 router.use('/v1/operations', operationRoutes)
+
+router.use('/v1/postings', postingRoutes)
+
+router.use('/v1/bids', bidRoutes)
 
 export default router;

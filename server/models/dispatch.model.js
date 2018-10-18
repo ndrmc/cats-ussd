@@ -8,7 +8,7 @@ import {WarehouseSchema, Warehouse} from './warehouse.model'
 import {TransporterSchema, Transporter} from './transporter.model'
 import faker from 'faker'
 
-const DispatchSchema = new Schema(_.extend(BaseSchema, {
+export const DispatchSchema = new Schema(_.extend(BaseSchema, {
     gin_no: String,
     requisition_number: String,
     dispatch_date: Date,
@@ -58,9 +58,4 @@ DispatchSchema.statics = {
     }
 }
 
-const Dispatch = mongoose.model('Dispatch', DispatchSchema)
-
-export default {
-    Dispatch,
-    DispatchSchema
-}
+export const Dispatch = mongoose.model('Dispatch', DispatchSchema)

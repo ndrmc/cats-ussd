@@ -4,7 +4,7 @@ import _ from 'lodash'
 import BaseSchema from './base.schema'
 import faker from 'faker'
 
-const TransporterSchema = new Schema(_.extend(BaseSchema, {
+export const TransporterSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     code: String,
     vehicle_count: Number,
@@ -36,9 +36,4 @@ TransporterSchema.statics = {
     }
 }
 
-const Transporter = mongoose.model('Transporter', TransporterSchema)
-
-export default {
-    Transporter,
-    TransporterSchema
-}
+export const Transporter = mongoose.model('Transporter', TransporterSchema)

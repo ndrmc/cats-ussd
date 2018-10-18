@@ -6,7 +6,7 @@ import {RationSchema, Ration} from './ration.model'
 import {ProgramSchema, Program} from './program.model'
 import BaseSchema from './base.schema'
 
-const RegionalRequestSchema = new Schema(_.extend(BaseSchema, {
+export const RegionalRequestSchema = new Schema(_.extend(BaseSchema, {
     reference_number: String,
     region_id: Number,
     ration: RationSchema,
@@ -30,9 +30,4 @@ RegionalRequestSchema.statics = {
     }
 }
 
-const RegionalRequest = mongoose.model('RegionalRequest', RegionalRequestSchema)
-
-export default {
-    RegionalRequest,
-    RegionalRequestSchema
-}
+export const RegionalRequest = mongoose.model('RegionalRequest', RegionalRequestSchema)

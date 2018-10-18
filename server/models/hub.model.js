@@ -5,7 +5,7 @@ import BaseSchema from './base.schema'
 import {LocationSchema, LocationModel} from './location.model'
 import faker from 'faker'
 
-const HubSchema = new Schema(_.extend(BaseSchema, {
+export const HubSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     description: String,
     lat: Number,
@@ -27,9 +27,4 @@ HubSchema.statics = {
     }
 }
 
-const Hub = mongoose.model('Hub', HubSchema)
-
-export default {
-    HubSchema,
-    Hub
-}
+export const Hub = mongoose.model('Hub', HubSchema)

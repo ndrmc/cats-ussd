@@ -4,7 +4,7 @@ import BaseSchema from './base.schema'
 import _ from 'lodash'
 import faker from 'faker'
 
-const ProgramSchema = new Schema(_.extend(BaseSchema, {
+export const ProgramSchema = new Schema(_.extend(BaseSchema, {
   name: {
     type: String
   },
@@ -26,9 +26,4 @@ ProgramSchema.statics = {
   }
 }
 
-const Program = mongoose.model('Program', ProgramSchema)
-
-export default {
-  ProgramSchema,
-  Program
-}
+export const Program = mongoose.model('Program', ProgramSchema)

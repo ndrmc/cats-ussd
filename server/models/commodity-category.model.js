@@ -5,7 +5,7 @@ import {UOMCategorySchema, UOMCategory} from './uom-category.model'
 import BaseSchema from './base.schema'
 import faker from 'faker'
 
-const CommodityCategorySchema = new Schema(_.extend(BaseSchema, {
+export const CommodityCategorySchema = new Schema(_.extend(BaseSchema, {
     name: String,
     code: String,
     code_am: String,
@@ -25,9 +25,4 @@ CommodityCategorySchema.statics = {
     }
 }
 
-const CommodityCategory = mongoose.model('CommodityCategory', CommodityCategorySchema)
-
-export default {
-    CommodityCategorySchema,
-    CommodityCategory
-}
+export const CommodityCategory = mongoose.model('CommodityCategory', CommodityCategorySchema)

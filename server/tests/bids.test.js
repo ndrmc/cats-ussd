@@ -2,7 +2,7 @@ import chai, { expect } from 'chai'
 import request from 'supertest-as-promised'
 import httpStatus from 'http-status'
 import app from '../../index'
-import {Operation, OperationSchema} from '../models/operation.model'
+import {Bid, BidSchema} from '../models/bid.model'
 import chaiHttp from 'chai-http'
 import mongoose from 'mongoose'
 
@@ -10,22 +10,22 @@ chai.config.includeStack = true;
 chai.use(chaiHttp)
 const should = chai.should()
 
-describe('Operation APIS', () => {
+describe('Bid APIS', () => {
 
     beforeEach(done => {
-        Operation.remove({}, err => {
+        Bid.remove({}, err => {
             done()
         })
     })
 
-    describe('# GET /api/v1/operations', () => {
-        it('should get all operations', (done) => {
-            let op = Operation.fake('Operation')
-            op.save((err, op) => {
+    describe('# GET /api/v1/bids', () => {
+        it('should get all bids', (done) => {
+            let bid = Bid.fake()
+            bid.save((err, bid) => {
                 if(err) throw err
                 
                 chai.request(app)
-                .get('/api/v1/operations')
+                .get('/api/v1/bids')
                 .end((err, res) => {
                     res.should.have.status(200)
                     res.body.should.be.a('array')

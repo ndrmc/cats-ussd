@@ -4,6 +4,7 @@ import util from 'util';
 // config should be imported before importing any other file
 import config from './config/config';
 import app from './config/express';
+import {fakePlugin} from './config/mongoose-faker-plugin'
 
 const debug = require('debug')('express-mongoose-es6-rest-api:index');
 
@@ -27,6 +28,8 @@ if (config.MONGOOSE_DEBUG) {
   });
 }
 
+mongoose.plugin(fakePlugin)
+
 // module.parent check is required to support mocha watch
 // src: https://github.com/mochajs/mocha/issues/1912
 if (!module.parent) {
@@ -35,5 +38,6 @@ if (!module.parent) {
     console.info(`server started on port ${config.port} (${config.env})`); // eslint-disable-line no-console
   });
 }
+
 
 export default app;

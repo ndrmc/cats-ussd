@@ -5,7 +5,7 @@ import _ from 'lodash'
 import faker from 'faker'
 const Schema = mongoose.Schema
 
-const FscdAnnualPlanSchema = new Schema(_.extend(BaseSchema, {
+export const FscdAnnualPlanSchema = new Schema(_.extend(BaseSchema, {
     name: {
         type: String,
     },
@@ -42,8 +42,4 @@ FscdAnnualPlanSchema.statics = {
         })
     }
 }
-const FscdAnnualPlan = mongoose.model('FscdAnnualPlan', FscdAnnualPlanSchema)
-export default {
-    FscdAnnualPlanSchema,
-    FscdAnnualPlan
-}
+export const FscdAnnualPlan = mongoose.model('FscdAnnualPlan', FscdAnnualPlanSchema)

@@ -4,7 +4,7 @@ import BaseSchema from './base.schema'
 import faker from 'faker'
 const Schema = mongoose.Schema
 
-const RationSchema = new Schema(_.extend(BaseSchema, {
+export const RationSchema = new Schema(_.extend(BaseSchema, {
     reference_no: {
         type: String,
     },
@@ -25,8 +25,4 @@ RationSchema.statics = {
         })
     }
 }
-const Ration = mongoose.model('Ration', RationSchema)
-export default {
-    RationSchema,
-    Ration
-}
+export const Ration = mongoose.model('Ration', RationSchema)

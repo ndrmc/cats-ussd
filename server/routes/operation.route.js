@@ -1,8 +1,8 @@
 import express from 'express'
-import operationCtrl from '../controllers/operation.controller.js'
+import {get} from '../controllers/operation.controller.js'
 
 const router = express.Router()
 
-router.get('/', operationCtrl.get)
+router.get('/', get)
 
-export default router
+export const operationRoutes = router

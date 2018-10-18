@@ -4,7 +4,7 @@ import _ from 'lodash'
 import BaseSchema from './base.schema'
 import faker from 'faker'
 
-const LocationSchema = new Schema(_.extend(BaseSchema, {
+export const LocationSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     code: String,
     ancestry: String,
@@ -22,9 +22,4 @@ LocationSchema.statics = {
     }
 }
 
-const LocationModel = mongoose.model('LocationModel', LocationSchema)
-
-export default {
-    LocationSchema,
-    LocationModel
-}
+export const LocationModel = mongoose.model('LocationModel', LocationSchema)

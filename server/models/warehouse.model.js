@@ -7,7 +7,7 @@ import {LocationSchema, LocationModel} from './location.model'
 import {OrganizationSchema, Organization} from './organization.model'
 import faker from 'faker'
 
-const WarehouseSchema = new Schema(_.extend(BaseSchema, {
+export const WarehouseSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     description: String,
     hub: HubSchema,
@@ -19,23 +19,27 @@ const WarehouseSchema = new Schema(_.extend(BaseSchema, {
 }))
 
 WarehouseSchema.statics = {
-    fake() {
-        return Warehouse({
-            name: faker.name.findName(),
-            description: faker.lorem.sentence(),
-            hub: Hub.fake(),
-            location: LocationModel.fake(),
-            organization: Organization.fake(),
-            lat: faker.random.number(),
-            lon: faker.random.number(),
-            address: faker.address.streetAddress()
-        })
+    fake(n = 1) {
+        let _faker = () => {
+            return Warehouse({
+                name: faker.name.findName(),
+                description: faker.lorem.sentence(),
+                hub: Hub.fake(),
+                location: LocationModel.fake(),
+                organization: Organization.fake(),
+                lat: faker.random.number(),
+                lon: faker.random.number(),
+                address: faker.address.streetAddress()
+            })
+        }
+        
+        if(n == 1) return _faker()
+        let warehouses = []
+        for(let i = 0; i < n; i++) {
+            warehouses.push(_faker())
+        }
+        return warehouses
     }
 }
 
-const Warehouse = mongoose.model('Warehouse', WarehouseSchema)
-
-export default {
-    Warehouse,
-    WarehouseSchema
-}
+export const Warehouse = mongoose.model('Warehouse', WarehouseSchema)

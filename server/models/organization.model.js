@@ -5,7 +5,7 @@ import BaseSchema from './base.schema'
 import {LocationSchema, Location} from './location.model'
 import faker from 'faker'
 
-const OrganizationSchema = new Schema(_.extend(BaseSchema, {
+export const OrganizationSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     long_name: String,
     description: String,
@@ -21,9 +21,4 @@ OrganizationSchema.statics = {
     }
 }
 
-const Organization = mongoose.model('Organization', OrganizationSchema)
-
-export default {
-    Organization,
-    OrganizationSchema
-}
+export const Organization = mongoose.model('Organization', OrganizationSchema)

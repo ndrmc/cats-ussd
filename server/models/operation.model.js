@@ -3,6 +3,7 @@ const Schema = require('mongoose').Schema
 // import mongoose, {Schema, model} from 'mongoose'
 import _ from 'lodash'
 import faker from 'faker'
+import {fakerPlugin} from '../../config/mongoose-faker-plugin'
 import BaseModelObject from './base.schema'
 import {ProgramSchema, Program} from './program.model'
 import {RationSchema, Ration} from './ration.model'
@@ -12,52 +13,26 @@ import {RequisitionSchema, Requisition} from './requisition.model'
 import {Dispatch, DispatchSchema} from './dispatch.model'
 import {RegionalRequestSchema, RegionalRequest} from './regional-request.model'
 
-const OperationSchema = new Schema(_.extend(BaseModelObject, {
+export const OperationSchema = new Schema(_.extend(BaseModelObject, {
   program: {
     type: ProgramSchema,
   },
-  hrd: {
-    type: HRDSchema
-  },
-  fscd_annual_plan: {
-    type: FscdAnnualPlanSchema
-  },
-  name: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  year: {
-    type: Number,
-  },
-  round: {
-    type: Number,
-  },
-  month: {
-    type: Number,
-  },
-  expected_start: {
-    type: Date,
-  },
-  expected_end: {
-    type: Date,
-  },
-  actual_start: {
-    type: Date,
-  },
-  actual_end: {
-    type: Date,
-  },
-  status: {
-    type: Number,
-  },
-  ration: {
-    type: RationSchema
-  },
+  hrd: HRDSchema,
+  fscd_annual_plan: FscdAnnualPlanSchema,
+  name: String,
+  description: String,
+  year: Number,
+  round: Number,
+  month: Number,
+  expected_start: Date,
+  expected_end: Date,
+  actual_start: Date,
+  actual_end: Date,
+  status: Number,
+  ration: RationSchema,
   requisitions: [RequisitionSchema],
   dispatches: [DispatchSchema],
-  regional_requests: [RegionalRequestSchema]
+  regional_requests: [RegionalRequestSchema],
 }))
 
 OperationSchema.statics = {
@@ -84,9 +59,4 @@ OperationSchema.statics = {
   }
 }
 
-const Operation = mongoose.model('Operation', OperationSchema)
-
-export default {
-  OperationSchema,
-  Operation
-}
+export const Operation = mongoose.model('Operation', OperationSchema)

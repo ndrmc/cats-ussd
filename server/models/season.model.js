@@ -4,7 +4,7 @@ import BaseSchema from './base.schema'
 import faker from 'faker'
 const Schema = mongoose.Schema
 
-const SeasonSchema = new Schema(_.extend(BaseSchema, {
+export const SeasonSchema = new Schema(_.extend(BaseSchema, {
     name: {
         type: String,
     },
@@ -30,8 +30,4 @@ SeasonSchema.statics = {
     }
 }
 
-const Season = mongoose.model('Season', SeasonSchema)
-export default {
-    SeasonSchema,
-    Season
-}
+export const Season = mongoose.model('Season', SeasonSchema)

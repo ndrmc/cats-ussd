@@ -6,7 +6,7 @@ import BaseSchema from './base.schema'
 import faker from 'faker'
 import _ from 'lodash'
 
-const RequisitionSchema = new Schema(_.extend(BaseSchema, {
+export const RequisitionSchema = new Schema(_.extend(BaseSchema, {
     id: Number,
     requisition_no: String,
     commodity: {
@@ -49,9 +49,4 @@ RequisitionSchema.statics = {
     }
 }
 
-const Requisition = mongoose.model('Requisition', RequisitionSchema)
-
-export default {
-    RequisitionSchema,
-    Requisition
-}
+export const Requisition = mongoose.model('Requisition', RequisitionSchema)

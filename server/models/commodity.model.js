@@ -5,7 +5,7 @@ import _ from 'lodash'
 import BaseSchema from './base.schema'
 import faker from 'faker'
 
-const CommoditySchema = new Schema(_.extend(BaseSchema, {
+export const CommoditySchema = new Schema(_.extend(BaseSchema, {
     name: String,
     name_am: String,
     long_name: String,
@@ -45,9 +45,4 @@ CommoditySchema.statics = {
     }
 }
 
-const Commodity = mongoose.model('Commodity', CommoditySchema)
-
-export default {
-    CommoditySchema,
-    Commodity
-}
+export const Commodity = mongoose.model('Commodity', CommoditySchema)

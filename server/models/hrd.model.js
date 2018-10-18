@@ -6,7 +6,7 @@ import {RationSchema, Ration} from './ration.model'
 import faker from 'faker'
 const Schema = mongoose.Schema
 
-const HRDSchema = new Schema(_.extend(BaseSchema, {
+export const HRDSchema = new Schema(_.extend(BaseSchema, {
     year_gc: {
         type: Number,
     },
@@ -39,8 +39,5 @@ HRDSchema.statics = {
         })
     }
 }
-const HRD = mongoose.model('HRD', HRDSchema)
-export default {
-    HRDSchema,
-    HRD
-}
+
+export const HRD = mongoose.model('HRD', HRDSchema)

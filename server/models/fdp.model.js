@@ -5,7 +5,7 @@ import BaseSchema from './base.schema'
 import {LocationSchema, LocationModel} from './location.model'
 import faker from 'faker'
 
-const FdpSchema = new Schema(_.extend(BaseSchema, {
+export const FdpSchema = new Schema(_.extend(BaseSchema, {
     name: String,
     description: String,
     lat: Number,
@@ -35,9 +35,4 @@ FdpSchema.statics = {
     }
 }
 
-const Fdp = mongoose.model('Fdp', FdpSchema)
-
-export default {
-    Fdp,
-    FdpSchema
-}
+export const Fdp = mongoose.model('Fdp', FdpSchema)

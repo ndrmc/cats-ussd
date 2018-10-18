@@ -61,6 +61,7 @@
     "method-override": "^2.3.5",
     "moment": "false2.20.1",
     "mongoose": "4.7.4",
+    "mongoose-fakery": "false0.1.7",
     "morgan": "1.7.0",
     "ussd-menu-builder": "false1.0.0",
     "winston": "2.3.0"

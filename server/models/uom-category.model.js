@@ -4,7 +4,7 @@ import _ from 'lodash'
 import BaseSchema from './base.schema'
 import faker from 'faker'
 
-const UOMCategorySchema = new Schema(_.extend(BaseSchema, {
+export const UOMCategorySchema = new Schema(_.extend(BaseSchema, {
     name: String
 }))
 
@@ -15,8 +15,4 @@ UOMCategorySchema.statics = {
         })
     }
 }
-const UOMCategory = mongoose.model('UOMCategory', UOMCategorySchema)
-export default {
-    UOMCategorySchema,
-    UOMCategory
-}
+export const UOMCategory = mongoose.model('UOMCategory', UOMCategorySchema)
